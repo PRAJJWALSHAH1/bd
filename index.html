@@ -236,10 +236,54 @@ line-height:1.8;
 .polaroid{padding:7px 7px 14px}
 .polaroid p{font-size:12px}
 }
+
+.audio-dialog{
+position:fixed;
+inset:0;
+z-index:20;
+background:#080611dd;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+.audio-dialog[hidden]{display:none}
+
+.audio-dialog-box{
+width:min(420px,100%);
+padding:28px;
+border:1px solid #d77aa7;
+border-radius:8px;
+background:#21132e;
+text-align:center;
+box-shadow:0 0 35px #e84b8a44;
+}
+
+.audio-dialog-box h2{color:#ffc2dd;font-size:26px;font-weight:normal;margin-bottom:12px}
+.audio-dialog-box p{color:#e8d6e4;line-height:1.6;margin-bottom:22px}
+.audio-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.audio-actions button{min-width:120px}
+.audio-actions .silent-btn{background:#4b3548;border-color:#8f6d87;box-shadow:none}
 </style>
 </head>
 
 <body>
+
+<div class="audio-dialog" id="audioDialog" role="dialog" aria-modal="true" aria-labelledby="audioTitle">
+<div class="audio-dialog-box">
+<h2 id="audioTitle">Play birthday music?</h2>
+<p>This page can play the birthday song on repeat.</p>
+<div class="audio-actions">
+<button type="button" class="open-btn" id="playMusicBtn">Play music ♪</button>
+<button type="button" class="open-btn silent-btn" id="silentBtn">Continue silently</button>
+</div>
+</div>
+</div>
+
+<audio id="birthdayMusic" loop preload="auto">
+<source src="sound/HAPPY%20BIRTHDAY%20INSTRUMENTAL.mp3" type="audio/mpeg">
+</audio>
 
 <div id="stars"></div>
 
@@ -418,6 +462,22 @@ img.onerror=()=>{
 img.style.display="none";
 error.style.display="flex";
 };
+});
+
+/* Ask for audio permission and start the song from that user gesture */
+const birthdayMusic=document.getElementById("birthdayMusic");
+const audioDialog=document.getElementById("audioDialog");
+
+document.getElementById("playMusicBtn").addEventListener("click",()=>{
+birthdayMusic.volume=0.7;
+birthdayMusic.play().catch(()=>{
+window.alert("Music could not be played. You can try again by tapping Play music.");
+});
+audioDialog.hidden=true;
+});
+
+document.getElementById("silentBtn").addEventListener("click",()=>{
+audioDialog.hidden=true;
 });
 
 /* Open birthday surprise */
