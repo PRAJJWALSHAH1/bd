@@ -1,0 +1,442 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Happy Birthday, Babeee 🌹</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:#080611;
+color:white;
+font-family:Georgia,serif;
+min-height:100vh;
+overflow-x:hidden;
+}
+
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+.star{
+position:absolute;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:.2;transform:scale(.7)}
+to{opacity:1;transform:scale(1.2)}
+}
+
+.petal,.heart{
+position:fixed;
+z-index:1;
+pointer-events:none;
+}
+
+.petal{top:-30px;animation:fall linear forwards}
+.heart{bottom:-30px;animation:floatUp linear forwards}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(720deg)}
+}
+
+@keyframes floatUp{
+to{transform:translateY(-110vh);opacity:0}
+}
+
+.container{
+position:relative;
+z-index:2;
+width:100%;
+min-height:100vh;
+padding:35px 18px 60px;
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+}
+
+.intro{
+margin-top:55px;
+animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.small-title{
+color:#f2a9c5;
+letter-spacing:4px;
+font-size:12px;
+text-transform:uppercase;
+margin-bottom:20px;
+}
+
+h1{
+font-size:clamp(40px,8vw,70px);
+color:#ffd6e7;
+font-weight:normal;
+text-shadow:0 0 25px #ff6fa8;
+line-height:1.2;
+}
+
+.subtitle{
+margin-top:18px;
+color:#e4cde9;
+font-size:17px;
+font-style:italic;
+}
+
+.open-btn{
+margin-top:35px;
+padding:14px 30px;
+border:1px solid #ff9ec7;
+border-radius:30px;
+background:linear-gradient(135deg,#e84b8a,#9b3b9d);
+color:white;
+font-size:15px;
+cursor:pointer;
+box-shadow:0 0 25px #e84b8a55;
+transition:.3s;
+}
+
+.open-btn:hover{
+transform:scale(1.06);
+box-shadow:0 0 35px #e84b8a99;
+}
+
+#birthday-content{
+display:none;
+width:100%;
+max-width:1050px;
+margin-top:55px;
+animation:fadeIn 1.5s ease;
+}
+
+.message-card{
+max-width:750px;
+margin:0 auto 55px;
+padding:35px 25px;
+border:1px solid #d77aa7;
+border-radius:20px;
+background:linear-gradient(135deg,#21132eee,#451c3bee);
+box-shadow:0 0 35px #e84b8a22;
+}
+
+.message-card h2{
+font-size:clamp(28px,5vw,42px);
+font-weight:normal;
+color:#ffc2dd;
+margin-bottom:25px;
+}
+
+.message-card p{
+color:#f1ddea;
+font-size:17px;
+line-height:1.9;
+margin-bottom:16px;
+}
+
+.signature{
+margin-top:25px;
+color:#ffb5d4;
+font-style:italic;
+font-size:20px;
+line-height:1.8;
+}
+
+.gallery-title{
+font-size:clamp(28px,5vw,42px);
+font-weight:normal;
+color:#ffc2dd;
+margin-bottom:12px;
+text-shadow:0 0 15px #e84b8a44;
+}
+
+.gallery-subtitle{
+color:#d9c5e7;
+font-size:15px;
+font-style:italic;
+margin-bottom:35px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+gap:25px;
+width:100%;
+align-items:start;
+}
+
+.polaroid{
+background:#fffaf5;
+color:#382238;
+padding:10px 10px 18px;
+box-shadow:0 8px 25px #0008;
+transform:rotate(-2deg);
+transition:transform .3s,box-shadow .3s;
+}
+
+.polaroid:nth-child(even){transform:rotate(2deg)}
+.polaroid:nth-child(3n){transform:rotate(-1deg)}
+
+.polaroid:hover{
+transform:rotate(0deg) scale(1.04);
+box-shadow:0 12px 35px #e84b8a55;
+z-index:3;
+}
+
+.polaroid img{
+width:100%;
+aspect-ratio:4/5;
+object-fit:cover;
+display:block;
+background:#eadde7;
+}
+
+.polaroid p{
+font-size:14px;
+margin-top:13px;
+font-style:italic;
+text-align:center;
+}
+
+.photo-error{
+display:none;
+aspect-ratio:4/5;
+background:#eadde7;
+color:#68435f;
+align-items:center;
+justify-content:center;
+font-size:13px;
+padding:10px;
+}
+
+.footer{
+margin-top:55px;
+color:#e0bddb;
+font-size:14px;
+font-style:italic;
+line-height:1.8;
+}
+
+@media(max-width:750px){
+.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.container{padding-left:14px;padding-right:14px}
+.intro{margin-top:35px}
+}
+
+@media(max-width:380px){
+.gallery{gap:13px}
+.polaroid{padding:7px 7px 14px}
+.polaroid p{font-size:12px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<div class="container">
+
+<section class="intro">
+<p class="small-title">A little surprise for someone special</p>
+<h1>Happy Birthday,<br>Babeee 🌹</h1>
+<p class="subtitle">To my Babeee, my favorite person in the world ❤️</p>
+<button class="open-btn" id="openBtn" onclick="openSurprise()">
+Open Your Surprise 💌
+</button>
+</section>
+
+<section id="birthday-content">
+
+<div class="message-card">
+<h2>Happy Birthday, Babeee ❤️</h2>
+
+<p>
+Every single day with you feels like a beautiful dream I never want to wake up from.
+You make ordinary moments special and bring happiness into my life in ways words
+can never fully explain.
+</p>
+
+<p>
+On your special day, I wish you endless happiness, beautiful memories, success in
+everything you do, and all the love your heart can hold.
+</p>
+
+<p>
+From our little adventures to the memories we keep close to our hearts, every
+moment with you is special. Thank you for being my favorite chapter in this life,
+my Babeee. ❤️
+</p>
+
+<p>
+No matter how many birthdays come and go, I hope I get to celebrate many more
+of them with you. You will always have a special place in my heart. 🌹
+</p>
+
+<div class="signature">
+Forever Yours,<br>
+Prajjwal ❤️
+</div>
+</div>
+
+<h2 class="gallery-title">Our Little Memories 📸</h2>
+<p class="gallery-subtitle">
+Every picture holds a little piece of my heart.
+</p>
+
+<div class="gallery" id="gallery">
+
+<div class="polaroid">
+<img alt="Pashupati memory">
+<p>our Pashupati memories 🛕❤️</p>
+<div class="photo-error">Photo unavailable</div>
+</div>
+
+<div class="polaroid">
+<img alt="Our memory">
+<p>the day we met 💕</p>
+<div class="photo-error">Photo unavailable</div>
+</div>
+
+<div class="polaroid">
+<img alt="Our memory">
+<p>that little laugh of yours 🌸</p>
+<div class="photo-error">Photo unavailable</div>
+</div>
+
+<div class="polaroid">
+<img alt="Our memory">
+<p>our favorite spot ✨</p>
+<div class="photo-error">Photo unavailable</div>
+</div>
+
+<div class="polaroid">
+<img alt="Our memory">
+<p>just us two 💗</p>
+<div class="photo-error">Photo unavailable</div>
+</div>
+
+<div class="polaroid">
+<img alt="Our memory">
+<p>a memory to keep 🌹</p>
+<div class="photo-error">Photo unavailable</div>
+</div>
+
+<div class="polaroid">
+<img alt="Our memory">
+<p>my favorite person ❤️</p>
+<div class="photo-error">Photo unavailable</div>
+</div>
+
+<div class="polaroid">
+<img alt="Our memory">
+<p>forever and always 🌹</p>
+<div class="photo-error">Photo unavailable</div>
+</div>
+
+</div>
+
+<p class="footer">
+Made with all my love, just for you. 💖<br>
+Happy Birthday, Babeee! 🌹
+</p>
+
+</section>
+</div>
+
+<script>
+/* Star background */
+const stars=document.getElementById("stars");
+
+for(let i=0;i<100;i++){
+const star=document.createElement("div");
+star.className="star";
+star.style.left=Math.random()*100+"%";
+star.style.top=Math.random()*100+"%";
+star.style.width=(Math.random()*3+1)+"px";
+star.style.height=star.style.width;
+star.style.animationDelay=Math.random()*3+"s";
+stars.appendChild(star);
+}
+
+/* Falling rose petals */
+function createPetal(){
+const petal=document.createElement("div");
+petal.className="petal";
+petal.textContent=["🌹","🌸","💮"][Math.floor(Math.random()*3)];
+petal.style.left=Math.random()*100+"vw";
+petal.style.fontSize=(Math.random()*12+12)+"px";
+petal.style.animationDuration=(Math.random()*5+6)+"s";
+document.body.appendChild(petal);
+setTimeout(()=>petal.remove(),12000);
+}
+
+setInterval(createPetal,700);
+
+/* Floating hearts */
+function createHeart(){
+const heart=document.createElement("div");
+heart.className="heart";
+heart.textContent=["❤️","💕","💗","💖"][Math.floor(Math.random()*4)];
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*12+14)+"px";
+heart.style.animationDuration=(Math.random()*5+7)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),13000);
+}
+
+setInterval(createHeart,1200);
+
+/* Your Google Drive photos */
+const photos=[
+"https://drive.google.com/uc?export=view&id=1dHoPSE2UuvI40HMjBisu3J6ZReb5stvx",
+"https://drive.google.com/uc?export=view&id=1yjDaFEIxUfkx6qT-K9K7uESlKqx16IbN",
+"https://drive.google.com/uc?export=view&id=1skTJrcyPnq-Y8zqBIHyWXS5NlCcOZVsZ",
+"https://drive.google.com/uc?export=view&id=1mFHPdSdd9ezzeOhqCIKgf6dQHMhnucl6",
+"https://drive.google.com/uc?export=view&id=1JzX-gProzwBWALat4KYRNMOEzPF97jVH",
+"https://drive.google.com/uc?export=view&id=1dHoPSE2UuvI40HMjBisu3J6ZReb5stvx",
+"https://drive.google.com/uc?export=view&id=1yjDaFEIxUfkx6qT-K9K7uESlKqx16IbN",
+"https://drive.google.com/uc?export=view&id=1skTJrcyPnq-Y8zqBIHyWXS5NlCcOZVsZ"
+];
+
+/* Assign photos to all eight frames */
+document.querySelectorAll(".polaroid").forEach((frame,index)=>{
+const img=frame.querySelector("img");
+const error=frame.querySelector(".photo-error");
+
+img.src=photos[index];
+
+img.onerror=()=>{
+img.style.display="none";
+error.style.display="flex";
+};
+});
+
+/* Open birthday surprise */
+function openSurprise(){
+document.getElementById("birthday-content").style.display="block";
+document.getElementById("openBtn").style.display="none";
+
+document.getElementById("birthday-content").scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+for(let i=0;i<15;i++){
+setTimeout(createHeart,i*150);
+}
+}
+</script>
+
+</body>
+</html>
+```
